@@ -15,4 +15,4 @@ Tendrá una sección de tareas (To Do App). Los elementos de la misma serán:
 - Filtros y ordenación sobre el estado de las tareas, fechas límite de inicio.
 
 Otra sección será un facturador (en proceso). Los elementos de la misma serán:
-- 
+- Descripción en proceso
