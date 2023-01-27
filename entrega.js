@@ -98,7 +98,7 @@ total_factura += total_productos
 console.log(`\n\nTotal de la factura: \$${total_factura}`)
 
 /* Impuestos */
-paga_impuesto = prompt("¿Paga impuestos? Ingrese 'S").toUpperCase()
+paga_impuesto = prompt("¿Paga impuestos? Ingrese 'S'").toUpperCase()
 
 if (paga_impuesto == "S"){
     do{
@@ -116,11 +116,9 @@ if (paga_impuesto == "S"){
     console.log(`Total con impuestos: \$${total_factura}`)
 }
 
-paga_cuotas = prompt("¿Paga en cuotas?").toUpperCase()
+paga_cuotas = prompt("¿Paga en cuotas? Ingrese 'S'").toUpperCase()
 
-if (paga_cuotas == "SÍ" ||
-    paga_cuotas == "SI" ||
-    paga_cuotas == "S"){
+if (paga_cuotas == "S"){
     cant_cuota = parseInt(prompt("Ingrese la cantidad de cuotas"))
 
     total_interes = interes_cuotas(cant_cuota,total_factura)
