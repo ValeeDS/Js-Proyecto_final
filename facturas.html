@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <title>Facturas</title>
 </head>
-<body class="bg-orange-50 min-h-screen">
+<body class="bg-orange-50 min-h-screen flex flex-row w-full">
     <!-- Side bar -->
-    <aside class="bg-orange-400 fixed h-screen top-0 left-0 z-40 rounded-r-3xl shadow-md flex flex-col">
-        <a href="#" class="h-20 flex flex-row items-center m-6">
+    <aside class="bg-orange-400 h-screen rounded-r-3xl shadow-md flex flex-col max-w-fit">
+        <a href="#" class="h-20 flex flex-row items-center m-6 mb-20">
             <img src="assets/img/working.png" class="h-full"/>
             <p class="text-white font-bold text-5xl">Free<span class="italic">App</span></p>
         </a>
-        </div>
         <nav class="pl-2 text-3xl flex-grow">
             <ul>
-                <li class="rounded-l-full px-4 py-2 flex flex-row items-center gap-3 text-orange-900 hover:bg-orange-50">
-                    <img src="assets/img/dashboard (2).png" class="h-7">
-                    <a href="index.html">Inicio</a>
+                <li class="rounded-l-full text-orange-900 hover:bg-orange-50">
+                    <a href="index.html" class="flex flex-row items-center gap-3 px-4 py-2">
+                        <img src="assets/img/dashboard (2).png" class="h-7">
+                        Inicio
+                    </a>
                 </li>
-                <li class="rounded-l-full px-4 py-2 flex flex-row items-center gap-3 text-orange-900 hover:bg-orange-50">
-                    <img src="assets/img/clipboard (2).png" class="h-7">
-                    <a href="proyectos.html">Proyectos</a>
+                <li class="rounded-l-full text-orange-900 hover:bg-orange-50">
+                    <a href="proyectos.html" class="flex flex-row items-center gap-3 px-4 py-2">
+                        <img src="assets/img/clipboard (2).png" class="h-7">
+                        Proyectos
+                    </a>
                 </li>
-                <li class="rounded-l-full px-4 py-2 flex flex-row items-center gap-3 text-orange-400 bg-orange-50 ">
-                    <img src="assets/img/invoice (1).png" class="h-7">
-                    <a href="facturas.html">Facturas</a>
+                <li class="rounded-l-full text-orange-400 bg-orange-50 ">
+                    <a href="facturas.html" class="flex flex-row items-center gap-3 px-4 py-2">
+                        <img src="assets/img/invoice (1).png" class="h-7">
+                        Facturas
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -41,14 +45,54 @@
             <img src="assets/img/sun.png" class="h-4">
         </div>
     </aside>
-    <!-- Page name -->
-    <div></div>
-    <!-- Filters -->
-    <div></div>
-    <!-- Table -->
-    <div></div>
-    <!-- Footer -->
-    <div></div>
-    <!-- Btn add -->
-    <div></div>
+    <div class="flex flex-col flex-grow px-28 pt-20">
+        <!-- Page name -->
+        <h1 class="text-7xl font-semibold pb-16">Facturas</h1>
+        <!-- Filters -->
+        <div class="flex flex-row gap-10">
+            <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Cliente</div>
+            <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Fecha</div>
+            <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Producto</div>
+            <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Monto</div>
+            <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Enviada</div>
+        </div>
+        <!-- Table -->
+        <ul class="flex-grow bg-orange-100 my-10 rounded-3xl shadow-xl flex flex-col ">
+            <li class="flex flex-row px-4 w-full gap-6 h-16 items-center border-t-2 border-orange-50 first:border-0 cursor-pointer">
+                <button class="border border-orange-400 bg-orange-400 w-6 h-6 rounded-full hover:border-orange-400">
+                    <i class="bi bi-check2 text-white"></i>
+                </button>
+                <p class="flex-grow">Proyecto "Tienda Gamer"</p>
+                <p>Juan Perez</p>
+                <p>$ 150.000</p>
+                <p>17-mar-2023</p>
+            </li>
+            <li class="flex flex-row px-4 w-full gap-6 h-16 items-center border-t-2 border-orange-50 first:border-0 cursor-pointer">
+                <button class="border border-orange-200 w-6 h-6 rounded-full text-orange-100 hover:text-orange-400 hover:border-orange-400">
+                    <i class="bi bi-check2"></i>
+                </button>
+                <p class="flex-grow">Proyecto "Tienda Gamer"</p>
+                <p>Juan Perez</p>
+                <p>$ 150.000</p>
+                <p>17-mar-2023</p>
+            </li>
+            <li class="flex flex-row px-4 w-full gap-6 h-16 items-center border-t-2 border-orange-50 first:border-0 cursor-pointer">
+                <button class="border border-orange-200 w-6 h-6 rounded-full text-orange-100 hover:text-orange-400 hover:border-orange-400">
+                    <i class="bi bi-check2"></i>
+                </button>
+                <p class="flex-grow">Proyecto "Tienda Gamer"</p>
+                <p>Juan Perez</p>
+                <p>$ 150.000</p>
+                <p>17-mar-2023</p>
+            </li>
+        </ul>
+        <!-- Footer -->
+        <footer class="text-center font-light pb-6">
+            2023 © Created by Valeria Del Savio - Todos los derechos reservados
+        </footer>
+        <!-- Btn add -->
+        <button class="fixed right-16 bottom-16 h-20 w-20 z-auto rounded-3xl shadow-2xl bg-orange-400">
+            <i class="bi bi-plus-lg text-orange-50 text-3xl leading-none"></i>
+        </button>
+    </div>
 </body>
