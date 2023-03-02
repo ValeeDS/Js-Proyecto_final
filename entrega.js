@@ -426,56 +426,6 @@ class Factura {
             }
         })
     }
-    imprimir_factura_console(){
-        console.log("\n\nFACTURA DE " + this.cliente.razonSocial.toUpperCase() + "\n\n\n")
-
-        console.log(` Cód  |   Descripción   | Cant |   Precio   |  Subtotal `)
-        this.compra.forEach(prod => {
-            let codigo
-            let descripcion
-            let cant
-            let precio
-            let subtotal
-
-            if (prod.codigo == null) {codigo = ' '} else {codigo = prod.codigo} 
-            if (prod.descripcion == null) {descripcion = ' '} else {descripcion = prod.descripcion} 
-            if (prod.cantidad == null) {cant = 0} else {cant = prod.cantidad} 
-            if (prod.precio == null) {precio = 0} else {precio = parseFloat(prod.precio).toFixed(2)} 
-            if (prod.subtotal == null) {subtotal = 0} else {subtotal = parseFloat(prod.subtotal).toFixed(2)} 
-
-            console.log(`${codigo.toString().padStart(5,' ')} | ${descripcion.toString().padEnd(15)} | ${cant.toString().padStart(4)} | $${precio.toString().padStart(9,' ')} | $${subtotal.toString().padStart(9,' ')}`)
-        })
-
-        console.log('-'.repeat(56))
-        
-        console.log('Total factura '.padStart(46,' ')+`$${parseFloat(this.total_compra).toFixed(2).toString().padStart(9,' ')}`)
-        
-        this.impuestos.forEach(imp => {
-            let impuesto
-            let monto
-
-            if (imp[0] == null) {impuesto = ' '} else {impuesto = imp[0]}
-            if (imp[1] == null) {monto = 0} else {monto = imp[1]}
-
-            console.log(`${impuesto.toString().toUpperCase().padStart(45,' ')} $${parseFloat(monto).toFixed(2).toString().padStart(9,' ')}`)
-        })
-
-        console.log('Total con impuestos '.padStart(46,' ')+`$${parseFloat(this.total_compra + this.total_impuestos).toFixed(2).toString().padStart(9,' ')}`)
-
-        if (this.total_financiacion > 0){
-            console.log('Interés '.padStart(46,' ')+`$${parseFloat(this.total_financiacion).toFixed(2).toString().padStart(9,' ')}`)
-
-            console.log('\n')
-
-            console.log('TOTAL '.padStart(46,' ')+`$${parseFloat(this.get_total_factura()).toFixed(2).toString().padStart(9,' ')}`)
-
-            console.log('\n')
-
-            for (let i = 0; i < this.cuotas.length; i++){
-                console.log('Cuota '.padStart(43,' ')+`${(i+1).toString().padStart(2,' ')} $${(this.cuotas[i]).toString().padStart(9,' ')}`)
-            }
-        }
-    }
 }
 
 class Producto {
