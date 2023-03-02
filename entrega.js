@@ -701,8 +701,7 @@ function crear_linea_compra(){
     let lista = document.querySelector("#newInvoiceForm #listaCompra ul")
 
     let li = document.createElement("li")
-    li.innerHTML = `<button type="button" class="move"></button>
-                    <select>
+    li.innerHTML = `<select>
                         <option>Descripción</option>
                     </select>
                     <input type="number" id="cantProd" placeholder="Cantidad">
