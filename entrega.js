@@ -1,5 +1,3 @@
-// TERCERA ENTREGA - SIMULADOR FACTURACIÓN
-
 // Iniciación de formularios
 let forms = document.querySelectorAll("form")
 for (let form of forms){
@@ -482,11 +480,12 @@ function crear_cliente(event){
     validation += cliente.set_email(object.email) || '' 
 
     if (validation != ''){
-        let message = document.createElement("div")
-        message.id = "validationMessage"
-        message.classList.add("border","border-danger","mt-5","rounded","rounded-2")
-        message.innerHTML += validation
-        form.append(message)
+        Swal.fire({
+            title: '¡Error en el formulario!',
+            html: validation,
+            icon: 'error',
+            confirmButtonText: 'Corregir'
+        })
     }
     else return cliente
 }
@@ -522,11 +521,18 @@ function crear_factura(event, cliente, vendedor){
 
     // Imprimir validación
     if (validation != ''){
-        let messageDiv = document.getElementById("validationMessage") || document.createElement("div")
-        messageDiv.id = "validationMessage"
-        messageDiv.innerHTML += validation
-        messageDiv.classList.add("border","border-danger","mt-5","rounded","rounded-2")
-        form.append(messageDiv)
+        let messageDiv = document.getElementById("swal2-html-container")
+        if(messageDiv){
+            messageDiv.innerHTML += validation
+        }
+        else {
+            Swal.fire({
+                title: '¡Error en el formulario!',
+                html: validation,
+                icon: 'error',
+                confirmButtonText: 'Corregir'
+            })
+        }
     }
     else {
         facturas.add(factura) //siempre se van a guardar las facturas cuando se crean
@@ -755,12 +761,13 @@ let facturas = new Set()
 let vendedor = new Vendedor("CoderHouse SRL", "El Salvador 5212 - Oficina 308 - Palermo Ciudad Autónoma de Buenos Aires CP 1414","RESPONSABLE INSCRIPTO", "CUIT", 30714528749, 30714528749, new Date('01/09/2014'))
 
 // Iniciación de objetos
-crear_producto("Manzana", 800)
-crear_producto("Banana", 300)
-crear_producto("Pera", 280)
-crear_producto("Uva", 600)
-crear_producto("Durazno", 700)
-crear_producto("Naranja", 400)
+fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(data => data.forEach( 
+            elem => {
+                let prod = crear_producto(elem.title, elem.price)
+                prod.set_categoria(elem.category)
+                prod.set_codigo(elem.id)}))
 
 // Ejecución
 let data_fact = localStorage.getItem('facturas')
