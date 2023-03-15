@@ -1,23 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1WK78RKBL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-G1WK78RKBL');
+    </script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>1° Pre-entrega</title>
 </head>
-<body class="min-vh-100 d-flex flex-column justify-content-between bg-dark text-white">
-    <section class="d-flex flex-column flex-fill align-items-center justify-content-center">
-        <h1>Primera Pre-Entrega</h1>
+<body class="min-vh-100 d-flex flex-column bg-dark text-white">
+    <section id="main" class="m-0 mw-100 px-5 d-flex flex-column flex-fill align-items-center justify-content-center container">
+        <h1>Tercera Pre-Entrega</h1>
         <h2>Del Savio, Valeria</h2>
-        <p>Primera pre-entrega del proyecto final del curso de JavaScript de CoderHouse</p>
-        <p>Presione F12 para abrir DevTools y poder visualizar correctamente la ejecución del código</p>
+        <p>Tercera pre-entrega del proyecto final del curso de JavaScript de CoderHouse</p>
+
+        <section class="row d-flex">
+            <div class="col">
+                <h3 class="mt-5">Añadir una nueva factura</h3>
+                <form id="newInvoiceForm" class="d-flex flex-column mb-5">
+                    <section id="invoiceInfo">
+                        <label for="proyecto">Nombre del Proyecto</label>
+                        <input type="text" id="proyecto" placeholder="Nombre del Proyecto">
+                        <label for="fecha">Fecha de factura</label>
+                        <input type="date" id="fecha" placeholder="Fecha de factura">
+                        <select id="condicionVenta">
+                            <option>Método de pago</option>
+                            <option>Transferencia</option>
+                            <option>Efectivo</option>
+                            <option>Tarjeta de Crédito</option>
+                            <option>Tarjeta de Débito</option>
+                        </select>
+                    </section>
+                    <section id="newClientForm">
+                        <h4>Cliente</h4>
+                        <label for="razonSocial">Razón social o Nombre</label>
+                        <input type="text" id="razonSocial" placeholder="Razón Social"><br>
+                        <label for="tipoDocumento">Tipo de Documento</label>
+                        <select id="tipoDocumento">
+                            <option>Tipo Doc</option>
+                            <option>DNI</option>
+                            <option>CUIL/CUIT</option>
+                        </select>
+                        <label for="documento">Número de Documento</label>
+                        <input type="number" id="documento" placeholder="Número de Documento"><br>
+                        <label for="condicionIVA">Condición frente al IVA</label>
+                        <select id="condicionIVA">
+                            <option>Condición frente al IVA</option>
+                            <option>Consumidor final</option>
+                            <option>Monotribustista</option>
+                            <option>Responsable Inscripto</option>
+                        </select><br>
+                        <label for="domicilio">Domicilio</label>
+                        <input type="text" id="domicilio" placeholder="Domicilio">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email">               
+                    </section>
+                    <section id="listaCompra">
+                        <h4>Detalle</h4>
+                        <ul>
+                            <li>
+                                <select>
+                                    <option>Descripción</option>
+                                </select>
+                                <input type="number" id="cantProd" placeholder="Cantidad">
+                                <button type="button" class="add">+</button>
+                            </li>
+                        </ul>
+                    </section>
+                    <section id="paymentInfo">
+                        <section id="impuestosSection">
+                            <label for="pagaImpuestos">Paga impuestos</label>
+                            <input type="checkbox" id="pagaImpuestos">
+                        </section>
+                    </section>
+                    <input type="submit" value="Añadir">
+                </form>
+            </div>
+            <div class="col pb-3 max-vh-100 d-flex flex-column">
+                <h3 class="mt-5">Facturas ingresadas</h3>
+                <div id="invoices" class="overflow-y-scroll overflow-x-hidden h-100"></div>
+            </div>
+        </section>
     </section>
-    <footer class="d-flex flex-row justify-content-end align-items-center position-relative bottom-0 w-100 px-1 text-white bg-myDark shadow fs-7">
+    <footer class="d-flex flex-row justify-content-end align-items-center w-100 px-1 text-white bg-myDark shadow fs-7">
         <div class="text-center flex-fill py-1 ps-5 ms-5">
             <p class="m-0">Desarrollado por <a href="https://valeriadelsavio.com.ar" target="_blank">Valeria Del Savio</a></p>
         </div>
@@ -35,6 +114,8 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="sweetalert2.all.min.js"></script>
     <script src="entrega.js"></script>
 </body>
 </html>

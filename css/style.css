@@ -12,4 +12,34 @@
 
 a {
     text-decoration: none;}
-    
+
+.pointer {
+    cursor: pointer;
+}
+
+.backblur {
+    backdrop-filter: blur(5px)}
+
+.modal-dialog {
+    max-width: 850px;
+}
+
+.A4 {
+    width: 21cm;
+    height: 29.7cm;
+    background-color: #fff;
+
+}
+
+.square {
+    width: 6rem;
+    height: 6rem;
+}
+
+.h-5 {
+    min-height: 3rem;
+}
+
+.max-vh-100{
+    max-height: calc(100vh - 6rem);
+}
