@@ -575,25 +575,25 @@ function cargar_cuotas(factura){
 }
 function linea_DOM(factura){
     let section = document.querySelector("#invoices")
-    let div = document.createElement("div")
-    div.classList.add("linea_factura", "row", "pointer")
-    div.innerHTML = `<div class="col-5">${factura.proyecto}</div>
+    let li = document.createElement("li")
+    li.classList.add("linea_factura", "row", "pointer")
+    li.innerHTML = `<div class="col-5">${factura.proyecto}</div>
                      <div class="col-1">${factura.cliente.razonSocial}</div>
                      <div class="col d-flex">$<span class="flex-grow-1 text-end">${parseFloat(factura.get_total_factura()).toFixed(2)}</span></div>
                      <div class="col-3">${new Date(factura.fecha).toLocaleDateString("es-AR",{year: 'numeric', month: 'short', day: 'numeric' }).replaceAll(" de ","-")}</div>`
 
-    div.tabIndex = 0
-    section.append(div)
+    li.tabIndex = 0
+    section.append(li)
 
-    div.addEventListener('click',function(e){
+    li.addEventListener('click',function(e){
         factura.imprimir_factura()
     })
-    div.addEventListener('keydown', function(e) {
+    li.addEventListener('keydown', function(e) {
         if (e.key == "Enter") {
             factura.imprimir_factura()
         }
     })
-    div.addEventListener('keydown', function(e) {
+    li.addEventListener('keydown', function(e) {
         if (e.key == " ") {
             factura.imprimir_factura()
         }
