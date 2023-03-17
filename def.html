@@ -14,10 +14,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+        
+        <link rel="stylesheet" href="css/main.css">
+
         <title>Facturas</title>
 </head>
 <body class="bg-orange-50 min-h-screen flex flex-row w-full">
@@ -67,12 +69,93 @@
         </footer>
     </main>
     <!-- Btn add -->
-    <button class="fixed right-16 bottom-16 h-20 w-20 z-auto rounded-3xl shadow-2xl bg-orange-400">
+    <button data-modal-target="addInvoiceForm" data-modal-toggle="addInvoiceForm" class="fixed right-16 bottom-16 h-20 w-20 z-auto rounded-3xl shadow-2xl bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:bg-orange-500 focus:ring-orange-600" type="button">
         <i class="bi bi-plus-lg text-orange-50 text-3xl leading-none"></i>
     </button>
+  
+    <!-- Main modal -->
+    <div id="addInvoiceForm" data-modal-placement="top-center-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+        <div class="relative w-full h-full max-w-2xl md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">Añadir una nueva factura</h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="addInvoiceForm">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Cerrar modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <form id="newInvoiceForm" class="space-y-6">
+                        <section id="invoiceInfo" class="flex items-center">
+                            <div class="flex-1">
+                                <input type="text" id="proyecto" placeholder="Nombre del Proyecto" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <input type="date" id="fecha" placeholder="Fecha de factura" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-0.5">
+                                <select id="condicionVenta" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-0.5">
+                                    <option>Método de pago</option>
+                                    <option>Transferencia</option>
+                                    <option>Efectivo</option>
+                                    <option>Tarjeta de Crédito</option>
+                                    <option>Tarjeta de Débito</option>
+                                </select>
+                            </div>
+                        </section>
+                        <section id="newClientForm" class="flex flex-col gap-2">
+                            <h4>Cliente</h4>
+                            <input type="text" id="razonSocial" placeholder="Razón Social" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1">
+                            <div class="flex flex-row gap-2">
+                                <select id="tipoDocumento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-fit p-2.5 py-1">
+                                    <option>Tipo Doc</option>
+                                    <option>DNI</option>
+                                    <option>CUIL/CUIT</option>
+                                </select>
+                                <input type="number" id="documento" placeholder="Número de Documento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1">
+                                <select id="condicionIVA" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-fit p-2.5 py-1 ml-5">
+                                    <option>Condición frente al IVA</option>
+                                    <option>Consumidor final</option>
+                                    <option>Monotribustista</option>
+                                    <option>Responsable Inscripto</option>
+                                </select>
+                            </div>
+                            <input type="email" id="email" placeholder="Email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1"> 
+                            <input type="text" id="domicilio" placeholder="Domicilio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1">
+                        </section>
+                        <section id="listaCompra" class="flex flex-col gap-2">
+                            <h4>Detalle</h4>
+                            <ul class="flex max-w-full flex-col gap-1">
+                                <li class="max-w-full flex gap-2">
+                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1">
+                                        <option>Descripción</option>
+                                    </select>
+                                    <input type="number" id="cantProd" placeholder="Cant" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-20 p-2.5 py-1">
+                                    <button type="button" class="add h-8 w-8 shrink-0 rounded-full bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:bg-orange-500 focus:ring-orange-600">+</button>
+                                </li>
+                            </ul>
+                        </section>
+                        <section id="paymentInfo">
+                            <section id="impuestosSection">
+                                <label for="pagaImpuestos">Paga impuestos</label>
+                                <input type="checkbox" id="pagaImpuestos">
+                            </section>
+                        </section>
 
+                        <!-- Form footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b mx-[-1.5rem]">
+                            <button type="submit" value="Añadir" class="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-base px-5 py-2.5 text-center">Añadir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     <script src="sweetalert2.all.min.js"></script>
     <script src="entrega.js"></script>
 </body>
