@@ -541,7 +541,6 @@ function crear_factura(event, cliente, vendedor){
         }
     }
     else {
-        facturas.add(factura) //siempre se van a guardar las facturas cuando se crean
         return factura
     }
 }
@@ -571,15 +570,28 @@ function cargar_cuotas(factura){
         validation == '' && factura.calculo_cuota(cuotas)
     }
 
+    // Imprimir validación
     if (validation != ''){
-        let messageDiv = document.getElementById("validationMessage") || document.createElement("div")
-        messageDiv.id = "validationMessage"
-        messageDiv.innerHTML += validation
-        messageDiv.classList.add("border","border-danger","mt-5","rounded","rounded-2")
-        form.append(messageDiv)
+        let messageDiv = document.getElementById("swal2-html-container")
+        if(messageDiv){
+            messageDiv.innerHTML += validation
+        }
+        else {
+            Swal.fire({
+                title: '¡Error en el formulario!',
+                html: validation,
+                icon: 'error',
+                confirmButtonText: 'Corregir'
+            })
+        }
+    }
+    else {
+        return factura
     }
 }
 function linea_DOM(factura){
+    facturas.add(factura)
+
     let section = document.querySelector("#invoices")
     let li = document.createElement("li")
     li.classList.add("linea_factura","flex","flex-row","px-4","w-full","gap-4","py-3","items-center","border-t-2","border-orange-50","first:border-0","cursor-pointer")
@@ -646,8 +658,7 @@ function submit_form(e){
     if (factura){
         factura.cargar_compra(iniciar_compra(e))
         cargar_impuestos(factura)
-        cargar_cuotas(factura)
-        linea_DOM(factura)
+        if (cargar_cuotas(factura)) linea_DOM(factura)
     }
 
     sessionStorage.removeItem('cant_cuotas')
@@ -746,8 +757,9 @@ function mostrar_opcion_cuotas(event){
     let payment_section = section_impuestos.parentNode
     let inputs_div = document.createElement("section")
     inputs_div.id = "cuotasInput"
-    inputs_div.innerHTML = `<label for="cantidadCuotas">Ingrese la cantidad de cuotas</label>
-                            <input type="number" id="cantidadCuotas" placeholder="Cant" value=${value}>`
+    inputs_div.classList.add("max-w-full","flex","gap-2","items-center")
+    inputs_div.innerHTML = `<label for="cantidadCuotas" class="text-sm font-medium text-gray-900">Ingrese la cantidad de cuotas</label>
+                            <input type="number" id="cantidadCuotas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-20 p-2.5 py-1" placeholder="Cant" value=${value}>`
 
     if (event.target.value == "Tarjeta de Crédito"){
         payment_section.insertBefore(inputs_div,section_impuestos)
