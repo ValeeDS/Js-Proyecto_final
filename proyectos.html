@@ -1,1 +1,63 @@
-<
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1WK78RKBL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-G1WK78RKBL');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet"/>
+        
+        <link rel="stylesheet" href="css/main.css">
+
+        <title>Facturas</title>
+</head>
+<body class="bg-orange-50 min-h-screen flex flex-row w-full">
+    <!-- Side bar -->
+    <aside class="bg-orange-400 h-screen rounded-r-3xl shadow-md flex flex-col max-w-fit">
+        <a href="index.html" class="h-20 flex flex-row items-center m-6 mb-20">
+            <img src="assets/img/working.png" class="h-full"/>
+            <p class="text-white font-bold text-3xl">Free<span class="italic">App</span></p>
+        </a>
+        <nav class="pl-2 text-2xl flex-grow">
+            <ul>
+                <li class="rounded-l-full text-orange-900 hover:bg-orange-50">
+                    <a href="index.html" class="flex flex-row items-center gap-3 px-4 py-2">
+                        <img src="assets/img/invoice (2).png" class="h-7">
+                        Facturas
+                    </a>
+                </li>
+                <li class="rounded-l-full text-orange-400 bg-orange-50">
+                    <a href="#" class="flex flex-row items-center gap-3 px-4 py-2">
+                        <img src="assets/img/clipboard (1).png" class="h-7">
+                        Proyectos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="flex flex-row gap-3 h-10 m-6 items-center text-orange-50">
+            <img src="assets/img/profile-user.png" class="h-full">
+            <p class="flex flex-col flex-grow"><span class="font-bold">Valeria</span>Del Savio</p>
+            <p>ES | AR</p>
+            <img src="assets/img/sun.png" class="h-4">
+        </div>
+    </aside>
+    <main id="main" class="flex flex-col flex-grow px-28 pt-20 h-screen">
+        <!-- Page name -->
+        <h1 class="text-7xl font-semibold pb-12">Proyectos</h1>
+        <section class="flex-grow bg-orange-100 mb-10 rounded-3xl shadow-xl text-4xl flex flex-col justify-center items-center"> Próximamente</section>
+        <footer class="text-center font-light pb-6">
+            2023 © Created by <a href="https://valeriadelsavio.com.ar" target="_blank" rel="noopener noreferrer">Valeria Del Savio</a> - Todos los derechos reservados
+        </footer>
+    </main>
+</body>
+</html>
