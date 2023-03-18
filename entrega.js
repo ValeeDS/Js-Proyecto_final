@@ -765,6 +765,7 @@ let facturas = new Set()
 let vendedor = new Vendedor("CoderHouse SRL", "El Salvador 5212 - Oficina 308 - Palermo Ciudad Autónoma de Buenos Aires CP 1414","RESPONSABLE INSCRIPTO", "CUIT", 30714528749, 30714528749, new Date('01/09/2014'))
 
 // Iniciación de objetos
+
 fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
         .then(data => data.forEach( 
@@ -772,6 +773,21 @@ fetch('https://fakestoreapi.com/products')
                 let prod = crear_producto(elem.title, elem.price)
                 prod.set_categoria(elem.category)
                 prod.set_codigo(elem.id)}))
+
+fetch('https://dummyjson.com/products')
+        .then(res => res.json())
+        .then(data => data.products.forEach( 
+            elem => {
+                let prod = crear_producto(elem.title, elem.price)
+                prod.set_categoria(elem.category)
+                prod.set_codigo(elem.id)}))
+
+crear_producto("Manzana", 800)
+crear_producto("Banana", 300)
+crear_producto("Pera", 280)
+crear_producto("Uva", 600)
+crear_producto("Durazno", 700)
+crear_producto("Naranja", 400)
 
 // Ejecución
 let data_fact = localStorage.getItem('facturas')
