@@ -657,12 +657,13 @@ function crear_linea_compra(){
     let lista = document.querySelector("#newInvoiceForm #listaCompra ul")
 
     let li = document.createElement("li")
-    li.innerHTML = `<select>
+    li.classList.add("max-w-full","flex","gap-2")
+    li.innerHTML = `<select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 py-1">
                         <option>Descripción</option>
                     </select>
-                    <input type="number" id="cantProd" placeholder="Cantidad">
-                    <button type="button" class="add">+</button>
-                    <button type="button" class="borrar">x</button>`
+                    <input type="number" placeholder="Cantidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-20 p-2.5 py-1">
+                    <button type="button" class="add h-8 w-8 shrink-0 rounded-full bg-orange-400 hover:bg-orange-500 focus:ring-3 focus:bg-orange-500 focus:ring-orange-600">+</button>
+                    <button type="button" class="borrar h-8 w-8 shrink-0 rounded-full bg-red-500 hover:bg-red-600">x</button>`
     lista.append(li)
 
     let btn_add = li.querySelector('.add')
@@ -688,10 +689,11 @@ function crear_linea_impuestos(){
 
     let li = document.createElement("li")
     li.className = "impuestoItem"
-    li.innerHTML = `<input type="text" class="impuestoNombre" placeholder="Impuesto">
-                    <input type="number" class="impuestoPorcentaje" placeholder="Porcentaje">
-                    <button type="button" class="add">+</button>
-                    <button type="button" class="borrar">x</button>`
+    li.classList.add("max-w-full","flex","gap-2")
+    li.innerHTML = `<input type="text" class="impuestoNombre bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-50 p-2.5 py-1" placeholder="Impuesto">
+                    <input type="number" class="impuestoPorcentaje bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-20 p-2.5 py-1" placeholder="Porcentaje">
+                    <button type="button" class="add h-8 w-8 shrink-0 rounded-full bg-orange-400 hover:bg-orange-500 focus:ring-3 focus:bg-orange-500 focus:ring-orange-600">+</button>
+                    <button type="button" class="borrar h-8 w-8 shrink-0 rounded-full bg-red-500 hover:bg-red-600">x</button>`
     lista.append(li)
 
     let btn_add = li.querySelector('.add')
@@ -707,11 +709,13 @@ function mostrar_opcion_impuestos(event){
 
     let section = document.querySelector("#newInvoiceForm #impuestosSection")
     let inputs_div = document.createElement("ul")
+    inputs_div.classList.add("flex","max-w-full","flex-col","gap-1")
     inputs_div.id = "impuestosInput"
-    inputs_div.innerHTML = `<li class="impuestoItem">
-                                <input type="text" class="impuestoNombre" placeholder="Impuesto">
-                                <input type="number" class="impuestoPorcentaje" placeholder="Porcentaje">
-                                <button type="button" class="add">+</button>
+    inputs_div.innerHTML = `<li class="impuestoItem max-w-full flex gap-2">
+                                <input type="text" class="impuestoNombre bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-50 p-2.5 py-1" placeholder="Impuesto">
+                                <input type="number" class="impuestoPorcentaje bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-orange-500 focus:border-orange-500 block w-20 p-2.5 py-1" placeholder="Porcentaje">
+                                <button type="button" class="add h-8 w-8 shrink-0 rounded-full bg-orange-400 hover:bg-orange-500 focus:ring-3 focus:bg-orange-500 focus:ring-orange-600">+</button>
+                                <button type="button" class="borrar h-8 w-8 shrink-0 rounded-full bg-transparent" disabled></button>
                             </li>`
 
 
