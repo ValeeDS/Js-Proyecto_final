@@ -241,7 +241,6 @@ class Factura {
 
     imprimir_factura(){
         /* Estructura de la factura */
-        console.log("entre")
         let modal = document.createElement("div")
         modal.id = "modalFact"
         modal.setAttribute("data-modal-placement","top-center")
