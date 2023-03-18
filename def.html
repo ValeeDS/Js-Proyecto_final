@@ -15,8 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet"/>-->
         
         <link rel="stylesheet" href="css/main.css">
 
@@ -52,7 +51,7 @@
             <img src="assets/img/sun.png" class="h-4">
         </div>
     </aside>
-    <main class="flex flex-col flex-grow px-28 pt-20">
+    <main class="flex flex-col flex-grow px-28 pt-20 h-screen">
         <!-- Page name -->
         <h1 class="text-7xl font-semibold pb-12">Facturas</h1>
         <!-- Filters -->
@@ -63,7 +62,7 @@
             <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Monto</div>
             <div class="rounded-full border border-orange-400 h-10 flex items-center px-6 flex-grow">Enviada</div>
         </div>
-        <ul id="invoices" class="flex-grow bg-orange-100 my-10 rounded-3xl shadow-xl flex flex-col overflow-y-auto"></ul>
+        <ul id="invoices" class="flex-grow bg-orange-100 my-10 rounded-3xl shadow-xl flex flex-col overflow-y-scroll"></ul>
         <footer class="text-center font-light pb-6">
             2023 © Created by <a href="https://valeriadelsavio.com.ar" target="_blank" rel="noopener noreferrer">Valeria Del Savio</a> - Todos los derechos reservados
         </footer>
@@ -157,7 +156,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="entrega.js"></script>
 </body>
 </html>

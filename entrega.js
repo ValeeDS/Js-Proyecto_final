@@ -576,11 +576,11 @@ function cargar_cuotas(factura){
 function linea_DOM(factura){
     let section = document.querySelector("#invoices")
     let li = document.createElement("li")
-    li.classList.add("linea_factura", "row", "pointer")
-    li.innerHTML = `<div class="col-5">${factura.proyecto}</div>
-                     <div class="col-1">${factura.cliente.razonSocial}</div>
-                     <div class="col d-flex">$<span class="flex-grow-1 text-end">${parseFloat(factura.get_total_factura()).toFixed(2)}</span></div>
-                     <div class="col-3">${new Date(factura.fecha).toLocaleDateString("es-AR",{year: 'numeric', month: 'short', day: 'numeric' }).replaceAll(" de ","-")}</div>`
+    li.classList.add("linea_factura","flex","flex-row","px-4","w-full","gap-4","py-3","items-center","border-t-2","border-orange-50","first:border-0","cursor-pointer")
+    li.innerHTML = `<div class="grow">${factura.proyecto}</div>
+                     <div class="min-w-fit max-w-[10rem]">${factura.cliente.razonSocial}</div>
+                     <div class="w-20 flex">$<span class="grow text-end">${parseFloat(factura.get_total_factura()).toFixed(2)}</span></div>
+                     <div class="w-24 text-center">${new Date(factura.fecha).toLocaleDateString("es-AR",{year: 'numeric', month: 'short', day: 'numeric' }).replaceAll(" de ","-")}</div>`
 
     li.tabIndex = 0
     section.append(li)
