@@ -7,3 +7,18 @@
 *{
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.A4 {
+    width: 21cm;
+    height: 29.7cm;
+    background-color: #fff;
+}
+
+.square {
+    width: 6rem;
+    height: 6rem;
+}
+
+.backblur {
+    backdrop-filter: blur(5px)
+}

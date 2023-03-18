@@ -241,76 +241,83 @@ class Factura {
 
     imprimir_factura(){
         /* Estructura de la factura */
+        console.log("entre")
         let modal = document.createElement("div")
         modal.id = "modalFact"
-        modal.setAttribute("data-bs-theme" , "dark" )
-        modal.classList.add("fixed-top","modal","d-block","backblur","bg-body-tertiary","bg-opacity-50")
+        modal.setAttribute("data-modal-placement","top-center")
+        modal.setAttribute("aria-hidden","true")
+        modal.tabIndex = -1
+        modal.classList.add("fixed","top-0","left-0","right-0","z-50","w-full","p-4","overflow-x-hidden","overflow-y-auto","md:inset-0","h-[calc(100%-1rem)]","md:h-full","backblur","justify-center","items-top","flex")
         modal.innerHTML = 
-        `<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Factura: ${this.puntoVenta.toString().padStart(4,'0')}-${this.num.toString().padStart(8,'0')}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-black">
-                    <div class="border A4 d-flex flex-column">
-                        <header class="rounded-5 rounded-top-0 bg-warning position-relative pb-3 mb-5 text-white">
-                            <div class="d-flex pb-3 px-4">
-                                <div class="col d-flex flex-column justify-content-center align-items-end">Logo</div>
-                                <div class="d-flex flex-column border border-white flex-shrink-1 text-center square justify-content-center mx-5">
-                                    <p class="h1">${this.tipo}</p>
-                                    <p class="fs-6">Cod. 06</p>
+        `<div class="modal-dialog relative h-full w-fit md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow max-h-[calc(100vh-2rem)] overflow-y-scroll">
+                <button type="button" class="btn-close absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="crypto-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <!-- Modal header -->
+                <div class="px-6 py-4 border-b rounded-t sticky top-0 bg-white z-20  shadow-sm"><h4 class="text-base font-semibold text-gray-900 lg:text-xl">Factura: ${this.puntoVenta.toString().padStart(4,'0')}-${this.num.toString().padStart(8,'0')}</h4></div>
+                <!-- Modal body -->
+                <div class="p-4">
+                    <div class="border A4 flex flex-col shadow-inner">
+                        <header class="rounded-3xl rounded-t-none bg-orange-400 relative pb-4 mb-12 text-white z-0">
+                            <div class="flex pb-4 px-6">
+                                <div class="flex flex-[1_1_0%] justify-center items-end">Logo</div>
+                                <div class="flex flex-col border border-white shrink text-center square justify-center mx-12">
+                                    <p class="text-4xl leading-tight font-medium mb-2">${this.tipo}</p>
+                                    <p class="text-base">Cod. 06</p>
                                 </div>
-                                <div class="d-flex col flex-column justify-content-center">
-                                    <p class="h6 lh-1">Factura</p>
-                                    <p class="m-0"><span class="fw-semibold">N°</span> ${this.puntoVenta.toString().padStart(4,'0')}-${this.num.toString().padStart(8,'0')}</p>
-                                    <p class="m-0"><span class="fw-semibold">Fecha:</span> ${new Date(this.fecha).toLocaleDateString(undefined,{year: 'numeric', month: 'numeric', day: 'numeric'})}</p>
+                                <div class="flex flex-[1_1_0%] flex-col content-center">
+                                    <p class="text-base leading-4 font-medium mb-2">Factura</p>
+                                    <p class="m-0"><span class="font-semibold">N°</span> ${this.puntoVenta.toString().padStart(4,'0')}-${this.num.toString().padStart(8,'0')}</p>
+                                    <p class="m-0"><span class="font-semibold">Fecha:</span> ${new Date(this.fecha).toLocaleDateString(undefined,{year: 'numeric', month: 'numeric', day: 'numeric'})}</p>
                                 </div>
                             </div>
-                            <div class="px-4 row m-0">
-                                <div class="col-7">
-                                    <p class="m-0"><span class="fw-semibold">Razón Social:</span> ${this.vendedor.razonSocial}</p>
-                                    <p class="m-0"><span class="fw-semibold">Domicilio:</span> ${this.vendedor.domicilio}</p>
-                                    <p class="m-0"><span class="fw-semibold">Condición frente al IVA:</span> ${this.vendedor.condicionIVA}</p>
+                            <div class="px-6 flex flex-row m-0">
+                                <div class="w-7/12">
+                                    <p class="m-0"><span class="font-semibold">Razón Social:</span> ${this.vendedor.razonSocial}</p>
+                                    <p class="m-0"><span class="font-semibold">Domicilio:</span> ${this.vendedor.domicilio}</p>
+                                    <p class="m-0"><span class="font-semibold">Condición frente al IVA:</span> ${this.vendedor.condicionIVA}</p>
                                 </div>
-                                <div class="d-flex flex-column col">
-                                    <p class="m-0"><span class="fw-semibold">${this.vendedor.tipoDocumento}</span> ${this.vendedor.documento}</p>
-                                    <p class="m-0"><span class="fw-semibold">Ingresos Brutos:</span> ${this.vendedor.ingresosBrutos}</p>
-                                    <p class="m-0"><span class="fw-semibold">Inicio de Actividades:</span> ${new Date(this.vendedor.inicioActividades).toLocaleDateString(undefined,{year: 'numeric', month: 'numeric', day: 'numeric'})}</p>
-                                    <a href="https://www.coderhouse.com/" referrerpolicy="no-referrer" target="_blank" class="d-flex flex-grow-1 align-items-end">https://www.coderhouse.com/</a>
+                                <div class="flex flex-col w-5/12">
+                                    <p class="m-0"><span class="font-semibold">${this.vendedor.tipoDocumento}</span> ${this.vendedor.documento}</p>
+                                    <p class="m-0"><span class="font-semibold">Ingresos Brutos:</span> ${this.vendedor.ingresosBrutos}</p>
+                                    <p class="m-0"><span class="font-semibold">Inicio de Actividades:</span> ${new Date(this.vendedor.inicioActividades).toLocaleDateString(undefined,{year: 'numeric', month: 'numeric', day: 'numeric'})}</p>
+                                    <a href="https://www.coderhouse.com/" referrerpolicy="no-referrer" target="_blank" class="flex grow items-end">https://www.coderhouse.com/</a>
                                 </div>
                             </div>
                         </header>
-                        <section class="px-4 row m-0 mb-5">
-                            <div class="col-7">
-                                <p class="m-0"><span class="fw-semibold">Cliente:</span> ${this.cliente.razonSocial}</p>
-                                <p class="m-0"><span class="fw-semibold">Domicilio:</span> ${this.cliente.domicilio}</p>
-                                <p class="m-0"><span class="fw-semibold">Condición frente al IVA:</span> ${this.cliente.condicionIVA}</p>
+                        <section class="px-6 flex flex-row m-0 mb-12">
+                            <div class="w-7/12">
+                                <p class="m-0"><span class="font-semibold">Cliente:</span> ${this.cliente.razonSocial}</p>
+                                <p class="m-0"><span class="font-semibold">Domicilio:</span> ${this.cliente.domicilio}</p>
+                                <p class="m-0"><span class="font-semibold">Condición frente al IVA:</span> ${this.cliente.condicionIVA}</p>
                             </div>
-                            <div class="col">
-                                <p class="m-0"><span class="fw-semibold">Documento:</span> ${this.cliente.tipoDocumento} ${this.cliente.documento}</p>
-                                <p class="m-0"><span class="fw-semibold">Email:</span> <a href="mailto:${this.cliente.email}">${this.cliente.email}</a></p>
-                                <p class="m-0"><span class="fw-semibold">Condición de venta:</span> ${this.cliente.condicionVenta}</p>
+                            <div class="w-5/12">
+                                <p class="m-0"><span class="font-semibold">Documento:</span> ${this.cliente.tipoDocumento} ${this.cliente.documento}</p>
+                                <p class="m-0"><span class="font-semibold">Email:</span> <a href="mailto:${this.cliente.email}">${this.cliente.email}</a></p>
+                                <p class="m-0"><span class="font-semibold">Condición de venta:</span> ${this.cliente.condicionVenta}</p>
                             </div>
                         </section>
-                        <section class="flex-grow-1 d-flex flex-column">
-                            <header class="d-flex row border border-start-0 border-end-0 border-warning px-4 m-0 fw-semibold">
-                                <div class="col-1">CÓD</div>
-                                <div class="col-6">DESCRIPCIÓN</div>
-                                <div class="col-1">CANT</div>
-                                <div class="col-2">PRECIO</div>
-                                <div class="col-2">TOTAL</div>
+                        <section class="grow flex flex-col">
+                            <header class="flex flex-row border border-l-0 border-r-0 border-orange-400 px-6 m-0 font-semibold">
+                                <div class="w-1/12">CÓD</div>
+                                <div class="w-6/12">DESCRIPCIÓN</div>
+                                <div class="w-1/12">CANT</div>
+                                <div class="w-2/12">PRECIO</div>
+                                <div class="w-2/12">TOTAL</div>
                             </header>
-                            <div id="tablaDetalle" class="flex-grow-1 border-bottom border-warning">
+                            <div id="tablaDetalle" class="grow border-b border-orange-400">
                                 
                             </div>
-                            <footer class="mb-5 pb-5">
+                            <footer class="mb-12 pb-12">
                                 <ul id="subtotales" class="m-0 p-0">
-                                    <li class="row px-4 m-0 fw-semibold">
-                                        <div class="col text-end">Subtotal</div>
-                                        <div class="col-2 d-flex justify-content-between">
+                                    <li class="flex flex-row px-6 m-0 font-semibold">
+                                        <div class="w-10/12 px-4 text-end">Subtotal</div>
+                                        <div class="w-2/12 flex content-between">
                                             <span>$</span>
-                                            <p class="m-0">${this.total_compra.toFixed(2)}</p>
+                                            <p class="m-0 grow px-2 text-end">${this.total_compra.toFixed(2)}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -333,18 +340,18 @@ class Factura {
                 }
             }
             let div = document.createElement("div")
-            div.classList.add("d-flex","row","px-4","m-0","text-center")
+            div.classList.add("flex","flex-row","px-6","m-0","text-center")
             div.innerHTML = `
-                <div class="col-1">${producto.codigo}</div>
-                <div class="col-6 text-start">${producto.descripcion}</div>
-                <div class="col-1">${producto.cantidad}</div>
-                <div class="col-2 d-flex justify-content-between">
+                <div class="w-1/12">${producto.codigo}</div>
+                <div class="w-6/12 text-start">${producto.descripcion}</div>
+                <div class="w-1/12">${producto.cantidad}</div>
+                <div class="w-2/12 flex content-between">
                     <span>$</span>
-                    <p class="m-0">${producto.precio.toFixed(2)}</p>
+                    <p class="m-0 grow px-2 text-end">${producto.precio.toFixed(2)}</p>
                 </div>
-                <div class="col-2 d-flex justify-content-between">
+                <div class="w-2/12 flex content-between">
                     <span>$</span>
-                    <p class="m-0">${producto.subtotal.toFixed(2)}</p>
+                    <p class="m-0 grow px-2 text-end">${producto.subtotal.toFixed(2)}</p>
                 </div>`
             tabla.append(div)
         }
@@ -355,23 +362,23 @@ class Factura {
         if (this.total_impuestos) {
             for (let impuesto of this.impuestos){
                 let li = document.createElement("li")
-                li.classList.add("row","px-4","m-0")
+                li.classList.add("flex","flex-row","px-6","m-0")
                 li.innerHTML = `
-                    <div class="col text-end">${impuesto[0]}</div>
-                    <div class="col-2 d-flex justify-content-between">
+                    <div class="w-10/12 px-4 text-end">${impuesto[0]}</div>
+                    <div class="w-2/12 flex content-between">
                         <span>$</span>
-                        <p class="m-0">${impuesto[1].toFixed(2)}</p>
+                        <p class="m-0 grow px-2 text-end">${impuesto[1].toFixed(2)}</p>
                     </div>`
                 subtotales.append(li)
             }
 
             let li = document.createElement("li")
-            li.classList.add("row","px-4","m-0","fw-semibold")
+            li.classList.add("flex","flex-row","px-6","m-0","fw-semibold")
                 li.innerHTML = `
-                <div class="col text-end">Subtotal con impuestos</div>
-                <div class="col-2 d-flex justify-content-between">
+                <div class="w-10/12 px-4 text-end">Subtotal con impuestos</div>
+                <div class="w-2/12 flex content-between">
                     <span>$</span>
-                    <p class="m-0">${(this.total_impuestos + this.total_compra).toFixed(2)}</p>
+                    <p class="m-0 grow px-2 text-end">${(this.total_impuestos + this.total_compra).toFixed(2)}</p>
                 </div>`
             subtotales.append(li)
         }
@@ -379,23 +386,23 @@ class Factura {
         /* Impresión de la financiación */
         if(this.total_financiacion){
             let li = document.createElement("li")
-            li.classList.add("row","px-4","m-0")
+            li.classList.add("flex","flex-row","px-6","m-0")
             li.innerHTML = `
-                <div class="col text-end">Interés por financiación</div>
-                <div class="col-2 d-flex justify-content-between">
+                <div class="w-10/12 px-4 text-end">Interés por financiación</div>
+                <div class="w-2/12 flex content-between">
                     <span>$</span>
-                    <p class="m-0">${this.total_financiacion.toFixed(2)}</p>
+                    <p class="m-0 grow px-2 text-end">${this.total_financiacion.toFixed(2)}</p>
                 </div>`
             subtotales.append(li)
 
             let footer = subtotales.parentNode
-            footer.classList.remove("pb-5")
+            footer.classList.remove("pb-12")
 
             let ul = document.createElement("ul")
-            ul.classList.add("d-flex","flex-row","gap-3","px-4","h-5","m-0","align-items-end","font-monospace","fst-italic")
+            ul.classList.add("flex","flex-row","gap-4","px-6","min-h-[3rem]","m-0","items-end","font-mono","italic")
             for (let [i, cuota] of this.cuotas.entries()){
                 let li = document.createElement("li")
-                li.classList.add("d-flex","flex-row")
+                li.classList.add("flex","flex-row")
                 li.innerHTML = `Cuota ${i+1}: $ ${cuota.toFixed(2)}`
                 ul.append(li)
             }
@@ -405,12 +412,12 @@ class Factura {
 
         /* Impresión del TOTAL */
         let li = document.createElement("li")
-            li.classList.add("row","px-4","m-0","fw-bold")
+            li.classList.add("flex","flex-row","px-6","m-0","font-bold")
             li.innerHTML = `
-                <div class="col text-end">TOTAL</div>
-                <div class="col-2 d-flex justify-content-between">
+                <div class="w-10/12 px-4 text-end">TOTAL</div>
+                <div class="w-2/12 flex content-between">
                     <span>$</span>
-                    <p class="m-0">${this.get_total_factura().toFixed(2)}</p>
+                    <p class="m-0 grow px-2 text-end">${this.get_total_factura().toFixed(2)}</p>
                 </div>`
         subtotales.append(li)
 
@@ -464,7 +471,7 @@ function crear_cliente(event){
     form.querySelector("#validationMessage") && form.querySelector("#validationMessage").remove()
 
     for (let elemento of form){
-        if (elemento.parentElement.id == "newClientForm") {
+        if (elemento.parentElement.id == "newClientForm" || elemento.parentElement.parentElement.id == "newClientForm" ) {
             object[elemento.id] = elemento.value
         }
     }
@@ -501,7 +508,7 @@ function crear_factura(event, cliente, vendedor){
     let cant = facturas.size + 1
 
     for (let elemento of form){
-        if (elemento.parentElement.id == "invoiceInfo") {
+        if (elemento.parentElement.parentElement.id == "invoiceInfo") {
             object[elemento.id] = elemento.value
         }
     }
